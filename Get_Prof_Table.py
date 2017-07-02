@@ -4,6 +4,7 @@
 
 import requests
 
+#consts for cropping
 sb = 'block_search'
 sov = '<option value=\"'
 sa = '\"'
@@ -13,20 +14,36 @@ td = '<td>'
 tde = '</td>'
 hr = '<a href =\"'
 
+#http page that contains list of faculties
+facs_lnk = 'http://isu.ru/Abitur/ru/rating'
+
+#http page that returns list directs of each faculty on GET request
+dirs_lnk = 'http://isu.ru/Abitur/control/jsp/rating/get_directions.jsp'
+
+#http page that contains other information about each direction
+lnk_lnk = 'http://isu.ru/Abitur/control/jsp/rating/get_direction_info.jsp'
+
+#const that tells that all requests were successful
+#if == 0 then everything is all right
+#if == 1 then connection error
+#if == 2 then connect timeout
+#if == 3 then read timeout
+#if == 4 then HTTP error
 fail = 0
 
 class prof:
     pass
 
 #function that get substr from end of first s string entrance in t string to end of t (if m == TRUE)
-#or from begin of t to begin of first endtrance s sting in t (if m == false)
-def crop(t, s, m):  # m == TRUE fpr cropping begin, m == FALSE for cropping end 
+#or from begin of t to begin of first entrance s sting in t (if m == false)
+def crop(t, s, m):
     return t[t.find(s)+len(s):] if m else t[:t.find(s)]
 
+#function that get list of faculties
 def facs():
     list = []
     try:
-        r = requests.get('http://isu.ru/Abitur/ru/rating')
+        r = requests.get(facs_lnk)
         r.raise_for_status()
         q = r.text
         q = crop(q, sb, 1)
@@ -44,14 +61,15 @@ def facs():
         fail = 4
     return list
 
+#function that get list of directs of current faculty
 def dirs(fac):
     list = []
     try:
-        r = requests.get('http://isu.ru/Abitur/control/jsp/rating/get_directions.jsp', params = { 'fac' : fac })
+        r = requests.get(dirs_lnk, params = { 'fac' : fac })
         r.raise_for_status()
         q = r.text
         while (q.find(sov) != -1):
-            q = crop(q,sov,1)
+            q = crop(q, sov, 1)
             list.append(crop(q, sa, 0))
     except requests.exceptions.ConnectTimeout:
         fail = 2
@@ -63,10 +81,11 @@ def dirs(fac):
         fail = 4
     return list
 
+#function that get list of profiles of current direction and all information of this profile 
 def lnk(fac, dir):
     list = []
     try:
-        r = requests.get('http://isu.ru/Abitur/control/jsp/rating/get_direction_info.jsp', params = { 'fac' : fac, 'dir' : dir})
+        r = requests.get(lnk_lnk, params = { 'fac' : fac, 'dir' : dir})
         r.raise_for_status()
         q = r.text
         while (q.find(hr) != -1):
