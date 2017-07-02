@@ -1,5 +1,5 @@
 #program that sorts objects in order, gived in argv. Also deletes objects with attribute that contains in argv
-import sysattribute
+import sys
 import os
 
 #consts for cropping
