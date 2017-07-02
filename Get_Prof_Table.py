@@ -59,6 +59,7 @@ def facs():
         fail = 1
     except requests.exceptions.HTTPError as err:
         fail = 4
+        HTTPErrNum = err
     return list
 
 #function that get list of directs of current faculty
@@ -122,7 +123,9 @@ def lnk(fac, dir):
         fail = 4
     return list
 
+#count of objects
 count = 0
+
 f = open('Isu_Prof_Table.ProfTab', 'wb')
 fc = facs()
 if(fail == 0):
@@ -146,7 +149,17 @@ if(fail == 0):
                         f.write(('    <category>' + k.cat + '</category>\n').encode('UTF-8'))
                         f.write(('    <link>' + k.link + '</link>\n').encode('UTF-8'))
                         f.write(('</object>\n').encode('UTF-8'))
-if(fail):
-    f.write('FAIL'.encode('UTF-8'))
-
 f.close()
+
+if fail:
+    print("FAIL\n")
+    if fail == 1:
+        print("CONNECTION_ERROR")
+    elif fail == 2:
+        print("CONNECTON_TIMEOUT")
+    elif fail == 3:
+        print("READ_TIMEOUT")
+    elif fail == 4:
+        print("HTTP_ERROR\n"+HTTPErrNum)
+else:
+    print(count)
