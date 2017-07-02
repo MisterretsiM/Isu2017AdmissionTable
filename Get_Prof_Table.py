@@ -126,7 +126,7 @@ def lnk(fac, dir):
 #count of objects
 count = 0
 
-f = open('Isu_Prof_Table.ProfTab', 'wb')
+f = open('Isu_Prof_Table.ProfTab', 'w', encoding = 'UTF-8')
 fc = facs()
 if(fail == 0):
     for i in fc:
@@ -137,18 +137,18 @@ if(fail == 0):
                 if(fail == 0):
                     for k in z:
                         count = count + 1
-                        f.write(('<object number=\"' + str(count) + '\">\n').encode('UTF-8'))
-                        f.write(('    <faculty>' + k.fac + '</faculty>\n').encode('UTF-8'))
-                        f.write(('    <direction>' + k.dir + '</direction>\n').encode('UTF-8'))
-                        f.write(('    <type>' + k.type + '</type>\n').encode('UTF-8'))
+                        print('<object number=\"' + str(count) + '\">', file = f)
+                        print('    <faculty>' + k.fac + '</faculty>', file = f)
+                        print('    <direction>' + k.dir + '</direction>', file = f)
+                        print('    <type>' + k.type + '</type>', file = f)
                         if (k.type == 'with_profile'):
-                            f.write(('    <profile>' + k.prf + '</profile>\n').encode('UTF-8'))
-                        f.write(('    <level>' + k.lvl + '</level>\n').encode('UTF-8'))
-                        f.write(('    <form>' + k.form + '</form>\n').encode('UTF-8'))
-                        f.write(('    <basement>' + k.base + '</basement>\n').encode('UTF-8'))
-                        f.write(('    <category>' + k.cat + '</category>\n').encode('UTF-8'))
-                        f.write(('    <link>' + k.link + '</link>\n').encode('UTF-8'))
-                        f.write(('</object>\n').encode('UTF-8'))
+                            print('    <profile>' + k.prf + '</profile>', file = f)
+                        print('    <level>' + k.lvl + '</level>', file = f)
+                        print('    <form>' + k.form + '</form>', file = f)
+                        print('    <basement>' + k.base + '</basement>', file = f)
+                        print('    <category>' + k.cat + '</category>', file = f)
+                        print('    <link>' + k.link + '</link>', file = f)
+                        print('</object>', file = f)
 f.close()
 
 if fail:
