@@ -1,6 +1,8 @@
-import sys
+#program that sorts objects in order, gived in argv. Also deletes objects with attribute that contains in argv
+import sysattribute
 import os
 
+#consts for cropping
 l_objn = "<object number=\""
 l_objne = "\">"
 l_obje = "</object>"
@@ -23,9 +25,12 @@ l_cate = "</category>"
 l_lnk = "<link>"
 l_lnke = "</link>"
 
+#function that get substr from end of first s string entrance in t string to end of t (if m == TRUE)
+#or from begin of t to begin of first entrance s sting in t (if m == false)
 def crop(t, s, m):
     return t[t.find(s)+len(s):] if m else t[:t.find(s)]
 
+#class page that contains all information about each direction
 class prf:
     def __init__(self, p_fc, p_dir, p_tp, p_prof, p_lvl, p_form, p_base, p_cat, p_lnk):
         self.p_fc = p_fc
@@ -37,11 +42,6 @@ class prf:
         self.p_base = p_base
         self.p_cat = p_cat
         self.p_lnk = p_lnk
-
-    def __repr__(self):
-        return repr(self.p_fc, self.p_dir, self.p_tp, self.p_prof, self.p_lvl, self.p_form, self.p_base, self.p_cat, self.p_lnk)
-
-
 
 f = open('Isu_Prof_Table.ProfTab', 'r', encoding = 'UTF-8')
 fc_list = []
@@ -141,3 +141,5 @@ for k in fc_list:
     print('    <link>' + k.p_lnk + '</link>', file = f)
     print('</object>', file = f)
 f.close()
+
+print(count)
