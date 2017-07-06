@@ -1,5 +1,5 @@
 #This program creates objects that contains information about faculty, direction, profile, level, form,
-#basement, category of each profile and link to original table of profile and save it into xml-like
+#basis, category of each profile and link to original table of profile and save it into xml-like
 #document named "Isu_Prof_Table.ProfTab"
 
 import requests
