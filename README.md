@@ -6,8 +6,8 @@ Unfortunately, the site structure is changing every year, so maybe later that pr
 
 At that moment:
 
-  Sort_Table.py - not in use
+  <b>Sort_Table.py</b> - not in use
   
-  Get_Prof_Table.py - Gets information from http://isu.ru/Abitur/ru/rating about all directions and saves it into xml-like file Isu_Prof_Table.ProfTab
+  <b>Get_Prof_Table.py</b> - Gets information from http://isu.ru/Abitur/ru/rating about all directions and saves it into xml-like file Isu_Prof_Table.ProfTab
   
-  MainForm.py - Gets all informaition about entrants and displays it on form.
+  <b>MainForm.py</b> - Gets all informaition about entrants and displays it on form.
