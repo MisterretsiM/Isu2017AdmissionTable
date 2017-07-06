@@ -145,7 +145,7 @@ if(fail == 0):
                             print('    <profile>' + k.prf + '</profile>', file = f)
                         print('    <level>' + k.lvl + '</level>', file = f)
                         print('    <form>' + k.form + '</form>', file = f)
-                        print('    <basement>' + k.base + '</basement>', file = f)
+                        print('    <basis>' + k.base + '</basis>', file = f)
                         print('    <category>' + k.cat + '</category>', file = f)
                         print('    <link>' + k.link + '</link>', file = f)
                         print('</object>', file = f)
